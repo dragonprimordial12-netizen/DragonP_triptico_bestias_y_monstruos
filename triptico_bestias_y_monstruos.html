@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tríptico · Bestias y Monstruos · Dragón Primordial</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@700;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fire:#ff4d00; --ember:#ff8c00; --gold:#ffd700;
+    --dark:#050305; --deep:#0d0509; --blood:#8b0000;
+    --teal:#00c8a0; --purple:#9b00ff;
+    --cream:#e8d5b0; --muted:#a08060;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: #2a2a2a;
+    font-family: 'Cinzel', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+
+  h2.side-label {
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: -20px;
+    opacity: 0.7;
+  }
+
+  /* === TRIPTYCH SHEET === */
+  .sheet {
+    width: 297mm;
+    height: 210mm;
+    display: flex;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(255,80,0,0.3);
+  }
+
+  /* fold line guides (screen only) */
+  .sheet::before, .sheet::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(255,140,0,0.15);
+    z-index: 10;
+  }
+  .sheet::before { left: 99mm; }
+  .sheet::after  { left: 198mm; }
+
+  .panel {
+    width: 99mm;
+    height: 210mm;
+    padding: 8mm 7mm;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* =================== OUTSIDE (PAGE 1) =================== */
+
+  /* PANEL A — COVER (right panel, shows when folded) */
+  .panel-cover {
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4mm;
+    text-align: center;
+    order: 3;
+  }
+  .panel-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(180,40,0,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(80,0,120,0.25) 0%, transparent 60%);
+  }
+  .cover-eyebrow {
+    font-size: 5pt;
+    letter-spacing: 0.5em;
+    color: var(--ember);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-beast-art {
+    font-size: 38pt;
+    line-height: 1;
+    filter: drop-shadow(0 0 10px rgba(255,100,0,0.6));
+    position: relative;
+    z-index: 1;
+  }
+  .cover-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 14pt;
+    font-weight: 900;
+    background: linear-gradient(160deg, #ffe680 0%, #ff8c00 35%, #ff2200 65%, #9b00ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0 8px rgba(255,100,0,0.5));
+  }
+  .cover-divider {
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ember), transparent);
+    position: relative;
+    z-index: 1;
+  }
+  .cover-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 7pt;
+    color: #d4b88a;
+    position: relative;
+    z-index: 1;
+    line-height: 1.5;
+  }
+  .cover-beasts-preview {
+    display: flex;
+    gap: 3mm;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    margin-top: 2mm;
+  }
+  .cover-beasts-preview span {
+    font-size: 14pt;
+    filter: drop-shadow(0 0 5px rgba(255,100,0,0.4));
+  }
+  .cover-roblox-badge {
+    position: relative;
+    z-index: 1;
+    margin-top: 3mm;
+    padding: 2mm 5mm;
+    border: 1px solid rgba(255,140,0,0.4);
+    font-size: 5.5pt;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    background: rgba(255,80,0,0.08);
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+  }
+  .cover-tagline {
+    font-size: 6pt;
+    color: rgba(255,140,0,0.55);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* PANEL B — BACK INFO (middle panel) */
+  .panel-back-mid {
+    background: var(--deep);
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+    border-left: 1px solid rgba(255,140,0,0.1);
+    border-right: 1px solid rgba(255,140,0,0.1);
+  }
+  .panel-back-mid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(155,0,255,0.07) 0%, transparent 70%);
+  }
+
+  /* PANEL C — BACK FLAP (left panel) */
+  .panel-back-left {
+    background: var(--dark);
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+  }
+  .panel-back-left::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,80,0,0.08) 0%, transparent 60%);
+  }
+
+  /* =================== INSIDE (PAGE 2) =================== */
+  .panel-inside-left {
+    background: var(--dark);
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5mm;
+  }
+  .panel-inside-left::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 20% 80%, rgba(255,80,0,0.1) 0%, transparent 60%);
+  }
+  .panel-inside-center {
+    background: #070307;
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5mm;
+    border-left: 1px solid rgba(255,140,0,0.12);
+    border-right: 1px solid rgba(255,140,0,0.12);
+  }
+  .panel-inside-center::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,60,0,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 30% at 50% 100%, rgba(180,40,0,0.15) 0%, transparent 60%);
+  }
+  .panel-inside-right {
+    background: var(--dark);
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5mm;
+  }
+  .panel-inside-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 80% 20%, rgba(80,0,120,0.1) 0%, transparent 60%);
+  }
+
+  /* =================== SHARED COMPONENTS =================== */
+
+  .panel-header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1mm;
+  }
+  .panel-header-label {
+    font-size: 4.5pt;
+    letter-spacing: 0.5em;
+    color: var(--ember);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1mm;
+  }
+  .panel-header-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 10pt;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), var(--ember));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+  .panel-header-title.purple {
+    background: linear-gradient(135deg, #cc88ff, var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .panel-header-title.teal {
+    background: linear-gradient(135deg, #80ffee, var(--teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .divider-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--fire), var(--gold), transparent);
+    position: relative;
+    z-index: 1;
+    margin: 0.5mm 0;
+  }
+  .divider-line.purple { background: linear-gradient(90deg, transparent, var(--purple), transparent); }
+  .divider-line.teal   { background: linear-gradient(90deg, transparent, var(--teal), transparent); }
+
+  .beast-list {
+    list-style: none;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1mm;
+  }
+  .beast-item {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+    font-size: 6.5pt;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+  }
+  .beast-item .icon { font-size: 8pt; min-width: 5mm; }
+  .beast-item .name { flex: 1; }
+  .beast-item .tag {
+    font-size: 4pt;
+    letter-spacing: 0.2em;
+    padding: 0.5mm 1.5mm;
+    border: 1px solid rgba(255,140,0,0.3);
+    color: rgba(255,140,0,0.6);
+    text-transform: uppercase;
+  }
+  .beast-item .tag.corrupta { border-color: rgba(155,0,255,0.35); color: rgba(180,100,255,0.7); }
+  .beast-item .tag.origen   { border-color: rgba(0,200,160,0.35); color: rgba(0,200,160,0.7); }
+
+  .section-label {
+    font-size: 5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ember);
+    position: relative;
+    z-index: 1;
+    margin-top: 1mm;
+  }
+  .section-label.corrupta { color: rgba(180,100,255,0.8); }
+  .section-label.origen   { color: var(--teal); }
+  .section-label.boss     { color: #ff6666; }
+  .section-label.npc      { color: #8899aa; }
+
+  .info-block {
+    position: relative;
+    z-index: 1;
+    background: rgba(255,100,0,0.05);
+    border-left: 2px solid var(--ember);
+    padding: 2mm 3mm;
+  }
+  .info-block.purple { border-left-color: var(--purple); background: rgba(155,0,255,0.05); }
+  .info-block.teal   { border-left-color: var(--teal);   background: rgba(0,200,160,0.05); }
+  .info-block.red    { border-left-color: #ff4444;        background: rgba(255,50,50,0.05); }
+  .info-block p {
+    font-size: 6pt;
+    color: #c4a880;
+    line-height: 1.6;
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+  }
+
+  .feature-row {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 2mm;
+    font-size: 6pt;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+  .feature-row .fi { font-size: 8pt; margin-top: 0.3mm; }
+  .feature-row strong { color: var(--gold); font-size: 6pt; }
+
+  .badge-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5mm;
+  }
+  .badge-card {
+    background: rgba(255,100,0,0.05);
+    border: 1px solid rgba(255,140,0,0.2);
+    padding: 1.5mm 2mm;
+  }
+  .badge-card .bi { font-size: 10pt; display: block; margin-bottom: 0.5mm; }
+  .badge-card .bt { font-size: 5pt; color: var(--gold); letter-spacing: 0.05em; line-height: 1.3; }
+  .badge-card .bd { font-size: 4.5pt; color: rgba(255,140,0,0.5); font-style: italic; margin-top: 0.3mm; }
+
+  .social-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5mm;
+  }
+  .social-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5mm;
+    font-size: 6pt;
+    color: rgba(255,140,0,0.7);
+    letter-spacing: 0.05em;
+  }
+  .social-item .si { font-size: 8pt; }
+
+  .gamepass-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(255,100,0,0.06);
+    border: 1px solid rgba(255,140,0,0.25);
+    padding: 2mm 3mm;
+    margin-bottom: 1.5mm;
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+  }
+  .gamepass-card .gt {
+    font-size: 6.5pt;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5mm;
+  }
+  .gamepass-card .gd {
+    font-size: 5.5pt;
+    color: #a08060;
+    line-height: 1.4;
+  }
+  .gamepass-card .gp {
+    font-size: 6pt;
+    color: #4fc3f7;
+    margin-top: 0.5mm;
+    font-weight: 700;
+  }
+
+  .star-row {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 1mm;
+    align-items: center;
+    font-size: 5pt;
+    color: rgba(255,140,0,0.5);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .big-icon {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-size: 28pt;
+    filter: drop-shadow(0 0 8px rgba(255,100,0,0.4));
+  }
+
+  .footer-note {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    font-size: 5pt;
+    color: rgba(255,140,0,0.35);
+    text-align: center;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(255,140,0,0.1);
+    padding-top: 2mm;
+  }
+
+  .hidden-secret {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 3mm;
+    border: 1px dashed rgba(155,0,255,0.3);
+    background: rgba(155,0,255,0.04);
+  }
+  .hidden-secret p {
+    font-size: 6pt;
+    color: rgba(180,100,255,0.7);
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: white; padding: 0; gap: 0; }
+    h2.side-label { display: none; }
+    .sheet { box-shadow: none; }
+    .page-break { page-break-before: always; }
+    @page { size: A4 landscape; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h2 class="side-label">◄ CARA EXTERIOR (imprime esta primero) ►</h2>
+
+<!-- ======================== PAGE 1: OUTSIDE ======================== -->
+<div class="sheet" id="outside">
+
+  <!-- Panel C: Back Flap (left, reads last when folded) -->
+  <div class="panel panel-back-left">
+    <div class="panel-header">
+      <span class="panel-header-label">✦ El Creador</span>
+      <div class="panel-header-title teal">Dragón<br>Primordial</div>
+    </div>
+    <div class="divider-line teal"></div>
+    <div class="info-block teal">
+      <p>Desarrollador independiente de Roblox. Forjó la Era Salvaje criatura por criatura, desde la primera Bestia Origen hasta los Monstruos ocultos en las sombras.</p>
+    </div>
+    <span class="section-label" style="color:var(--teal);">✦ El Universo</span>
+    <div class="feature-row">
+      <span class="fi">🐲</span>
+      <span><strong>15 bestias</strong> únicas con habilidades exclusivas</span>
+    </div>
+    <div class="feature-row">
+      <span class="fi">👹</span>
+      <span><strong>16+ monstruos</strong> peligrosos en el mundo</span>
+    </div>
+    <div class="feature-row">
+      <span class="fi">🌑</span>
+      <span><strong>Sistema día/noche</strong> que potencia tus habilidades</span>
+    </div>
+    <div class="feature-row">
+      <span class="fi">⚖️</span>
+      <span><strong>3 linajes:</strong> Puras, Corruptas y Origen</span>
+    </div>
+    <div class="feature-row">
+      <span class="fi">🏅</span>
+      <span><strong>Emblemas</strong> que cuentan tu leyenda</span>
+    </div>
+    <div class="feature-row">
+      <span class="fi">⛓️</span>
+      <span><strong>Bestias y Monstruos ocultos</strong> por descubrir</span>
+    </div>
+
+    <div class="divider-line" style="margin-top:2mm;"></div>
+    <span class="section-label">✦ Juego en Roblox</span>
+    <div class="info-block">
+      <p>Busca <strong style="color:var(--gold);">Bestias y Monstruos</strong> en Roblox o escanea el código QR en el portal web del Dragón Primordial. ¡100% gratis para jugar!</p>
+    </div>
+
+    <div class="footer-note">@4UFrancisco · Dragón Primordial</div>
+  </div>
+
+  <!-- Panel B: Back Center (middle outside panel) -->
+  <div class="panel panel-back-mid">
+    <div class="panel-header" style="text-align:center;">
+      <span class="panel-header-label" style="text-align:center;display:block;">✦ Comunidad ✦</span>
+      <div class="panel-header-title" style="font-size:9pt;text-align:center;">Únete a la<br>Era Salvaje</div>
+    </div>
+    <div class="divider-line"></div>
+
+    <div style="position:relative;z-index:1;text-align:center;margin:1mm 0;">
+      <span style="font-size:20pt;filter:drop-shadow(0 0 8px rgba(255,100,0,0.5));">🔥</span>
+    </div>
+
+    <span class="section-label" style="text-align:center;display:block;">✦ Síguenos ✦</span>
+    <div class="social-grid">
+      <div class="social-item"><span class="si">🎵</span><span>TikTok</span></div>
+      <div class="social-item"><span class="si">▶️</span><span>YouTube</span></div>
+      <div class="social-item"><span class="si">📸</span><span>Instagram</span></div>
+      <div class="social-item"><span class="si">💬</span><span>Discord</span></div>
+      <div class="social-item"><span class="si">𝕏</span><span>Twitter/X</span></div>
+      <div class="social-item"><span class="si">📘</span><span>Facebook</span></div>
+      <div class="social-item"><span class="si">🧵</span><span>Threads</span></div>
+      <div class="social-item"><span class="si">🎮</span><span>Roblox</span></div>
+    </div>
+
+    <div class="divider-line" style="margin:2mm 0;"></div>
+
+    <span class="section-label">✦ Gamepasses</span>
+    <div class="gamepass-card">
+      <div class="gt">🔥 Pase de Fuego</div>
+      <div class="gd">Apoya al Dragón · Insignia exclusiva · Beneficios de fuego</div>
+      <div class="gp">6 Robux</div>
+    </div>
+    <div class="gamepass-card" style="border-color:rgba(155,0,255,0.35);background:rgba(155,0,255,0.06);">
+      <div class="gt" style="color:rgba(200,150,255,0.9);">🔮 Despertar Místico</div>
+      <div class="gd">Poder máximo · Beneficios premium · Leyenda definitiva</div>
+      <div class="gp" style="color:#ce93d8;">12 Robux</div>
+    </div>
+
+    <div class="divider-line" style="margin:1mm 0;"></div>
+    <div class="info-block" style="border-left-color:var(--teal);">
+      <p style="text-align:center;font-size:5.5pt;">💎 Cristales disponibles dentro del juego desde 10 R$ hasta 60 R$</p>
+    </div>
+
+    <div class="footer-note">dragonprimordial12 · atom.bio</div>
+  </div>
+
+  <!-- Panel A: Cover (right panel — this is the FRONT when folded) -->
+  <div class="panel panel-cover">
+    <div class="cover-eyebrow">Roblox · Era Salvaje</div>
+    <div class="cover-beast-art">🔥🐲🔥</div>
+    <div class="cover-title">BESTIAS<br>Y<br>MONSTRUOS</div>
+    <div class="cover-divider"></div>
+    <div class="cover-sub">Elige tu Bestia.<br>Desata tu Forma.<br>Domina la Era.</div>
+    <div class="cover-beasts-preview">
+      <span>🦁</span><span>🐍</span><span>🦊</span>
+      <span>🦂</span><span>🐺</span><span>🕷️</span>
+    </div>
+    <div class="cover-roblox-badge">🎮 Jugar en Roblox · Gratis</div>
+    <div class="cover-tagline">@Dragón Primordial</div>
+  </div>
+
+</div><!-- /sheet outside -->
+
+
+<h2 class="side-label page-break">◄ CARA INTERIOR (imprime en el reverso) ►</h2>
+
+<!-- ======================== PAGE 2: INSIDE ======================== -->
+<div class="sheet" id="inside">
+
+  <!-- Panel D: Inside Left — Bestias Puras -->
+  <div class="panel panel-inside-left">
+    <div class="panel-header">
+      <span class="panel-header-label">👑 Linaje</span>
+      <div class="panel-header-title">Bestias<br>Puras</div>
+    </div>
+    <div class="divider-line"></div>
+    <div class="info-block">
+      <p>El linaje más poderoso y equilibrado de la Era Salvaje. Cada una porta una pasiva única que define tu estilo de combate.</p>
+    </div>
+
+    <ul class="beast-list">
+      <li class="beast-item"><span class="icon">🦁</span><span class="name">Bestia León</span><span class="tag">Pura</span></li>
+      <li class="beast-item"><span class="icon">🐲</span><span class="name">Bestia Dragón</span><span class="tag">Pura</span></li>
+      <li class="beast-item"><span class="icon">🐍</span><span class="name">Bestia Serpiente</span><span class="tag">Pura</span></li>
+      <li class="beast-item"><span class="icon">🐢</span><span class="name">Bestia Tortuga</span><span class="tag">Pura</span></li>
+      <li class="beast-item"><span class="icon">🐦‍🔥</span><span class="name">Bestia Fénix</span><span class="tag">Pura</span></li>
+      <li class="beast-item"><span class="icon">🦊</span><span class="name">Bestia Zorro</span><span class="tag">Pura</span></li>
+      <li class="beast-item"><span class="icon">🦖</span><span class="name">Rey Lagarto Tirano</span><span class="tag">Pura</span></li>
+      <li class="beast-item"><span class="icon">🦂</span><span class="name">Bestia Escorpión</span><span class="tag">Pura</span></li>
+    </ul>
+
+    <div class="divider-line" style="margin-top:2mm;"></div>
+    <div class="star-row">✦ ✦ ✦ ✦ ✦</div>
+    <div class="info-block" style="margin-top:1mm;">
+      <p>Cada Bestia posee habilidades activas, pasivas, dashes únicos y variantes especiales que se activan al caer la noche.</p>
+    </div>
+
+    <div class="footer-note">8 Bestias Puras · Domina el día</div>
+  </div>
+
+  <!-- Panel E: Inside Center — Main Feature Panel -->
+  <div class="panel panel-inside-center">
+    <div style="text-align:center;position:relative;z-index:1;">
+      <span style="font-size:22pt;filter:drop-shadow(0 0 12px rgba(255,80,0,0.6));">🔥</span>
+    </div>
+    <div class="panel-header" style="text-align:center;">
+      <span class="panel-header-label" style="text-align:center;display:block;">✦ El Mundo ✦</span>
+      <div class="panel-header-title" style="font-size:12pt;text-align:center;">Era Salvaje</div>
+    </div>
+    <div class="divider-line"></div>
+
+    <div class="info-block">
+      <p>Un mundo brutal donde las criaturas más poderosas luchan por la supremacía. La oscuridad de la noche despierta poderes que el sol no puede contener.</p>
+    </div>
+
+    <span class="section-label corrupta" style="margin-top:1mm;">🩸 Bestias Corruptas</span>
+    <div class="divider-line purple"></div>
+    <ul class="beast-list">
+      <li class="beast-item"><span class="icon">🕷️</span><span class="name">Bestia Araña</span><span class="tag corrupta">Corrupta</span></li>
+      <li class="beast-item"><span class="icon">🐳</span><span class="name">Bestia Ballena</span><span class="tag corrupta">Corrupta</span></li>
+      <li class="beast-item"><span class="icon">🦄</span><span class="name">Bestia Unicornio</span><span class="tag corrupta">Corrupta</span></li>
+      <li class="beast-item"><span class="icon">🧪</span><span class="name">Bestia Quimera</span><span class="tag corrupta">Corrupta</span></li>
+      <li class="beast-item"><span class="icon">🐺</span><span class="name">Bestia Lobo</span><span class="tag corrupta">Corrupta</span></li>
+    </ul>
+    <div class="info-block purple" style="margin-top:1mm;">
+      <p>Poder oscuro al precio de tu cordura. Las Corruptas despiertan en la noche.</p>
+    </div>
+
+    <span class="section-label origen" style="margin-top:2mm;">⚖️ Bestia Origen</span>
+    <div class="divider-line teal"></div>
+    <ul class="beast-list">
+      <li class="beast-item"><span class="icon">👤</span><span class="name">Bestia Humano</span><span class="tag origen">Origen</span></li>
+    </ul>
+    <div class="info-block teal" style="margin-top:0.5mm;">
+      <p>El comienzo de todo poder. La forma más cercana al equilibrio absoluto.</p>
+    </div>
+
+    <div class="hidden-secret" style="margin-top:2mm;">
+      <p>⛓️ Aún hay Bestias ocultas esperando ser liberadas… ¿Te atreves a descubrirlas?</p>
+    </div>
+
+    <div class="footer-note">14 criaturas jugables · ¡Y más por venir!</div>
+  </div>
+
+  <!-- Panel F: Inside Right — Monsters & Emblems -->
+  <div class="panel panel-inside-right">
+    <div class="panel-header">
+      <span class="panel-header-label" style="color:#ff6666;">⚠️ Monstruos</span>
+      <div class="panel-header-title" style="background:linear-gradient(135deg,#ff9999,#ff4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Bestias Sin<br>Dueño</div>
+    </div>
+    <div class="divider-line" style="background:linear-gradient(90deg,transparent,#ff4444,transparent);"></div>
+
+    <span class="section-label boss">👑 Jefes Poderosos</span>
+    <ul class="beast-list">
+      <li class="beast-item"><span class="icon">🐚</span><span class="name">Cangrejo Ermitaño</span></li>
+      <li class="beast-item"><span class="icon">🦈</span><span class="name">Tiburón de Agua</span></li>
+      <li class="beast-item"><span class="icon">🐍</span><span class="name">Hidra</span></li>
+      <li class="beast-item"><span class="icon">🐔</span><span class="name">Basilisco</span></li>
+      <li class="beast-item"><span class="icon">🐗</span><span class="name">Jabalí Mutante</span></li>
+      <li class="beast-item"><span class="icon">🦕</span><span class="name">Plesiosaurio</span></li>
+      <li class="beast-item"><span class="icon">🧊</span><span class="name">??? Por descubrir</span></li>
+      <li class="beast-item"><span class="icon">🌳</span><span class="name">??? Por descubrir</span></li>
+    </ul>
+
+    <span class="section-label npc" style="margin-top:1.5mm;">👹 NPC Hostiles</span>
+    <ul class="beast-list">
+      <li class="beast-item"><span class="icon">🐛</span><span class="name">Oruga</span></li>
+      <li class="beast-item"><span class="icon">🌸</span><span class="name">Flor Monstruo</span></li>
+      <li class="beast-item"><span class="icon">🦇</span><span class="name">Murciélago de Ébano</span></li>
+      <li class="beast-item"><span class="icon">🐺</span><span class="name">Licántropo Lunar</span></li>
+      <li class="beast-item"><span class="icon">🐲</span><span class="name">Dragón Abisal</span></li>
+      <li class="beast-item"><span class="icon">🐴</span><span class="name">Caballo</span></li>
+    </ul>
+
+    <div class="divider-line" style="margin-top:2mm;background:linear-gradient(90deg,transparent,#ff4444,transparent);"></div>
+    <span class="section-label">🏅 Emblemas Legendarios</span>
+    <div class="info-block">
+      <p>Completa desafíos épicos para ganar emblemas únicos. Cada emblema cuenta tu historia en la Era Salvaje.</p>
+    </div>
+    <div class="feature-row" style="margin-top:1mm;">
+      <span class="fi">🏆</span><span><strong>Emblema de Bienvenida</strong> — Tu primer paso</span>
+    </div>
+    <div class="feature-row">
+      <span class="fi">⚔️</span><span><strong>Emblemas de Combate</strong> — 10 bajas sin morir</span>
+    </div>
+    <div class="feature-row">
+      <span class="fi">🌑</span><span><strong>Bestia Oculta</strong> — Libera tu forma total</span>
+    </div>
+
+    <div class="footer-note">🌑 ¿Qué acecha en las sombras más profundas?</div>
+  </div>
+
+</div><!-- /sheet inside -->
+
+</body>
+</html>
